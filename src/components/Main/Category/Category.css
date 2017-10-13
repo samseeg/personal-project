@@ -1,0 +1,15 @@
+.cat_wrapper {
+    display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.cat_title {
+    background: #4a6670;
+    color: white;
+    font-size: 20px;
+    border-radius: 10px;
+    width: 300px;
+}

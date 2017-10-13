@@ -34,12 +34,12 @@ passport.use(new Auth0Strategy({
     db.find_user([profile.identities[0].user_id]).then(user => {
         console.log(user);
         if (user[0]) {
-            return done(null, user[0].id)
+            return done(null, user[0].user_id)
         } else {
             const user = profile._json;
             db.create_user([user.name, user.email, user.picture, user.identities[0].user_id])
                 .then(user => {
-                    return done(null, user[0].id);
+                    return done(null, user[0].user_id);
                 })
         }
     })
@@ -47,7 +47,7 @@ passport.use(new Auth0Strategy({
 
 app.get('/auth', passport.authenticate('auth0'));
 app.get('/auth/callback', passport.authenticate('auth0', {
-    successRedirect: 'http://localhost:3000/#/private',
+    successRedirect: 'http://localhost:3000/#/main',
     failureRedirect: '/auth'
 }));
 app.get('/auth/me', (req, res) => {
@@ -61,6 +61,8 @@ app.get('/auth/logout', (req, res) => {
     req.logOut();
     res.redirect(302, 'http://localhost:3000/#/')
 })
+
+
 
 passport.serializeUser(function (id, done) {
     done(null, id);
