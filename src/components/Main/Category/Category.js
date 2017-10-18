@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {connect} from 'react-redux';
 import './Category.css';
 
-export default class Category extends Component {
+class Category extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -47,7 +48,21 @@ export default class Category extends Component {
                         )
                     })}
                 </div>
+                <div className='posts_container'>
+                    {this.state.posts.map((item, i) => {
+                        console.log(item)
+                        return (
+                            <div className='posts' key ={i}>{item.op}</div>
+                        )
+                    })}
+                    </div>
             </div>
         )
     }
 }
+
+function mapStateToProps(state) {
+    return 
+}
+
+export default Category;
