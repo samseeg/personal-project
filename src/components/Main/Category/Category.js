@@ -6,22 +6,29 @@ export default class Category extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            categories: []
+            categories: [],
+            posts: []
         }
     }
 
     componentDidMount() {
-        axios.get('/main')
+        axios.get('/main/category')
             .then(response => {
-                console.log(response.data)
+                // console.log(response.data)
                 this.setState({
                     categories: response.data
                 })
             })
     }
 
-    catClick() {
-
+    catClick(postId) {
+        axios.get(`/main/category/${postId}`)
+            .then(response => {
+                console.log(response)
+                this.setState({
+                    posts: response.data
+                })
+            })
     }
 
 
@@ -34,9 +41,9 @@ export default class Category extends Component {
                 </div>
                 <div className='cat_container'>
                     {this.state.categories.map((item, i) => {
-                        console.log(i)
+                        // console.log(i)
                         return (
-                            <div className='cat' key={i}>{item.cat_name}</div>
+                            <div className='cat' key={i} onClick={() => this.catClick(item.cat_id)}>{item.cat_name}</div>
                         )
                     })}
                 </div>
