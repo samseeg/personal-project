@@ -32,7 +32,7 @@ passport.use(new Auth0Strategy({
     const db = app.get('db');
 
     db.find_user([profile.identities[0].user_id]).then(user => {
-        console.log(user);
+        // console.log(user);
         if (user[0]) {
             return done(null, user[0].user_id)
         } else {
@@ -79,6 +79,7 @@ const controller = require('./controller/controller');
 
 app.get('/main/category', controller.getCategories);
 app.get('/main/category/:id', controller.getPosts);
+app.get('/user/:id', controller.attachUser);
 
 const PORT = 3005;
 app.listen(PORT, console.log(`Listening on port ${PORT}`))

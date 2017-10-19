@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
+import { catClick, catButt } from '../../../ducks/users';
+import Posts from '../Posts/Posts';
 import './Category.css';
 
 class Category extends Component {
@@ -8,7 +10,7 @@ class Category extends Component {
         super(props);
         this.state = {
             categories: [],
-            posts: []
+            catVisibility: true
         }
     }
 
@@ -22,14 +24,14 @@ class Category extends Component {
             })
     }
 
-    catClick(postId) {
-        axios.get(`/main/category/${postId}`)
-            .then(response => {
-                console.log(response)
-                this.setState({
-                    posts: response.data
-                })
-            })
+    catMap(item) {
+        this.props.catClick(item.cat_id)
+        this.setState({catVisibility: false})
+    }
+
+    catPush() {
+        this.props.catButt()
+        this.setState({catVisibility: true})
     }
 
 
@@ -37,32 +39,36 @@ class Category extends Component {
     render() {
         return (
             <div className='cat_wrapper'>
-                <div className='cat_title'>
+                <div className='cat_title' onClick={() => this.catPush()}>
                     Categories
                 </div>
-                <div className='cat_container'>
-                    {this.state.categories.map((item, i) => {
-                        // console.log(i)
-                        return (
-                            <div className='cat' key={i} onClick={() => this.catClick(item.cat_id)}>{item.cat_name}</div>
-                        )
-                    })}
-                </div>
-                <div className='posts_container'>
-                    {this.state.posts.map((item, i) => {
-                        console.log(item)
-                        return (
-                            <div className='posts' key ={i}>{item.op}</div>
-                        )
-                    })}
+
+                {this.state.catVisibility ?
+
+                    <div className='cat_container'>
+                        {this.state.categories.map((item, i) => {
+                            // console.log(i)
+                            return (
+                                <div className='cat' key={i} onClick={() => this.catMap(item)}>{item.cat_name}</div>
+                            )
+                        })}
                     </div>
+
+                    : null}
+
+                <Posts />
             </div>
         )
     }
 }
 
 function mapStateToProps(state) {
-    return 
+    return {
+        posts: state.posts
+    }
 }
 
-export default Category;
+export default connect(mapStateToProps, {
+    catClick: catClick,
+    catButt: catButt
+})(Category);
