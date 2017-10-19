@@ -7,7 +7,7 @@ const initialState = {
 
 const GET_USER_INFO = 'GET_USER_INFO';
 const GET_POSTS = 'GET_POSTS';
-const HIDE_POSTS = 'HIDE_POSTS';
+const EMPTY_POSTS = 'EMPTY_POSTS';
 
 export function getUserInfo() {
     const userData = axios.get('/auth/me')
@@ -32,12 +32,10 @@ export function catClick(postId) {
     }
 }
 
-export function catButt() {
-    const hide_posts = []
-
+export function emptyPosts() {
     return {
-        type: HIDE_POSTS,
-        payload: hide_posts
+        type: EMPTY_POSTS,
+        payload: []
     }
 }
 
@@ -54,7 +52,7 @@ export default function reducer(state = initialState, action) {
                 posts: action.payload
             }
 
-            case HIDE_POSTS:
+        case EMPTY_POSTS:
             return {
                 posts: action.payload
             }

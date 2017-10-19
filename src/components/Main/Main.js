@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import Category from '../Main/Category/Category';
 import { Link } from 'react-router-dom';
+import {connect} from 'react-redux';
+import {emptyPosts} from '../../ducks/users';
 // import axios from 'axios';
 import './Main.css';
 
-export default class Login extends Component {
+class Main extends Component {
 
 
 
@@ -23,9 +24,18 @@ export default class Login extends Component {
                     <a href='/auth/logout' className='btn'><div>
                         Logout
                         </div></a>
+
+                    
                 </div>
-                <Category />
+                
+                <Link to='/category' className='cat_title'><div className='cat_title' onClick={() => this.props.emptyPosts()}>
+                        Categories
+                </div>
+                </Link>
             </div>
         )
     }
 }
+
+
+export default connect(null, {emptyPosts: emptyPosts})(Main);

@@ -1,3 +1,7 @@
+.main_wrapper {
+    width: 100%;
+}
+
 .cat_wrapper {
     display: flex;
 	flex-direction: column;

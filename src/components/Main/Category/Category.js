@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+
+import Main from '../Main';
+
 import { connect } from 'react-redux';
-import { catClick, catButt } from '../../../ducks/users';
-import Posts from '../Posts/Posts';
+import { catClick } from '../../../ducks/users';
+import {Link} from 'react-router-dom';
 import './Category.css';
 
 class Category extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            categories: [],
-            catVisibility: true
+            categories: []
         }
     }
 
@@ -26,12 +28,6 @@ class Category extends Component {
 
     catMap(item) {
         this.props.catClick(item.cat_id)
-        this.setState({catVisibility: false})
-    }
-
-    catPush() {
-        this.props.catButt()
-        this.setState({catVisibility: true})
     }
 
 
@@ -39,24 +35,17 @@ class Category extends Component {
     render() {
         return (
             <div className='cat_wrapper'>
-                <div className='cat_title' onClick={() => this.catPush()}>
-                    Categories
-                </div>
-
-                {this.state.catVisibility ?
+                <Main/>
 
                     <div className='cat_container'>
                         {this.state.categories.map((item, i) => {
                             // console.log(i)
                             return (
-                                <div className='cat' key={i} onClick={() => this.catMap(item)}>{item.cat_name}</div>
+                                <Link key={i} to='/category/posts'><div className='cat' key={i} onClick={() => this.catMap(item)}>{item.cat_name}</div>
+                                </Link>
                             )
                         })}
                     </div>
-
-                    : null}
-
-                <Posts />
             </div>
         )
     }
@@ -69,6 +58,5 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, {
-    catClick: catClick,
-    catButt: catButt
+    catClick: catClick
 })(Category);
