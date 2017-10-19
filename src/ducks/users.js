@@ -23,7 +23,7 @@ export function getUserInfo() {
 export function catClick(postId) {
     const post_info = axios.get(`/main/category/${postId}`)
         .then(response => {
-            // console.log(response)
+            // console.log(response.data)
             return response.data
         })
     return {

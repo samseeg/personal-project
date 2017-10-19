@@ -79,7 +79,7 @@ const controller = require('./controller/controller');
 
 app.get('/main/category', controller.getCategories);
 app.get('/main/category/:id', controller.getPosts);
-app.get('/user/:id', controller.attachUser);
+app.get('/user/:id', controller.getUser);
 
 const PORT = 3005;
 app.listen(PORT, console.log(`Listening on port ${PORT}`))

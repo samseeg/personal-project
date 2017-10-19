@@ -16,9 +16,12 @@ module.exports = {
         .catch( (err) => res.status(500).send('something went wrong'))
     },
 
-    attachUser: (req, res, next) => {
+    getUser: (req, res, next) => {
         const db = req.app.get('db');
-        console.log(req)
+        let {id} = req.params;
+        // console.log(req)
+        db.find_user_from_id(id)
+        .then(response => res.status(200).send(response))
     }
 
 }
