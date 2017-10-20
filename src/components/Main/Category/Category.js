@@ -26,10 +26,6 @@ class Category extends Component {
             })
     }
 
-    catMap(item) {
-        this.props.catClick(item.cat_id)
-    }
-
 
 
     render() {
@@ -39,9 +35,9 @@ class Category extends Component {
 
                     <div className='cat_container'>
                         {this.state.categories.map((item, i) => {
-                            // console.log(i)
+                            // console.log(item)
                             return (
-                                <Link key={i} to='/category/posts'><div className='cat' key={i} onClick={() => this.catMap(item)}>{item.cat_name}</div>
+                                <Link key={i} className='link' to='/category/posts'><div className='cat' key={i} onClick={() => this.props.catClick(item.cat_id)}>{item.cat_name}</div>
                                 </Link>
                             )
                         })}

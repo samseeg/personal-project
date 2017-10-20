@@ -1,42 +1,37 @@
 .login_wrapper {
-    /* display: flex;
+  /* display: flex;
 	flex-direction: column;
 	flex-wrap: nowrap;
 	justify-content: space-around;
 	align-items: center;
     align-content: center; */
-    height: 100vh;
-}
+  height: 100vh; }
 
 .login_title {
-    font-size: xx-large;
-}
+  font-size: xx-large; }
 
 .outer_btn {
-    display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
-	justify-content: space-around;
-	align-items: center;
-    align-content: center;
-    height: 100vh;
-}
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+  height: 100vh; }
 
 .login_btn_div {
-    display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
-	justify-content: space-around;
-	align-items: center;
-    align-content: center;
-    margin-bottom: 250px;
-    width: 200px;
-    height: 100px;
-    background: #6c737e;
-}
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+  margin-bottom: 250px;
+  width: 200px;
+  height: 100px;
+  background: #6c737e; }
 
 .login_btn {
-    text-decoration: none;
-    font-size: x-large;
-    color: white;
-}
+  text-decoration: none;
+  font-size: x-large;
+  color: white; }

@@ -1,0 +1,41 @@
+.posts_container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%; }
+
+.newPost {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 100px;
+  padding: 10px 0; }
+  .newPost input {
+    width: 90vw;
+    text-align: center; }
+  .newPost .subButt {
+    width: 20vw;
+    background: black;
+    color: white; }
+  .newPost hr {
+    width: 100%;
+    padding: 0; }
+
+.posts {
+  margin-bottom: 10px;
+  background: white;
+  min-width: 340px;
+  cursor: pointer;
+  color: #4444da; }
+
+.post {
+  font-size: 28px; }
+
+.user_info {
+  color: black;
+  font-size: 13px; }

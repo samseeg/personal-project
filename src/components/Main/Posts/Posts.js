@@ -1,21 +1,58 @@
 import React, { Component } from 'react';
-
 import Main from '../Main';
+import axios from 'axios';
+
+
+
+import './Posts.css';
 
 import { connect } from 'react-redux';
 
 class Posts extends Component {
-    
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            userId: {},
+            catId: {},
+            post: ''
+        }
+    }
+
+    //For later use when I need the user id for making posts
+
+    // componentDidMount() {
+    //     axios.get('/currentuser')
+    //         .then(response => {
+    //             // console.log(response.data[0].user_id)
+    //             this.setState({
+    //                 userId: response.data[0].user_id
+    //             })
+    //         })
+    // }
+
 
     render() {
         return (
             <div className='posts_container'>
-                <Main/>
+                <Main />
 
                 <div className='newPost'>
-                    <input onChange={e => e.target.value}></input>
+
+                    {/* input for posts */}
+                    <input type='text' value={this.state.post} onChange={e => {
+                        // console.log(this.state.post)
+                        this.setState({
+                            post: e.target.value
+                        })
+                    }} placeholder='Make a post' />
+
+                    {/* submit button */}
+                    <div className='subButt' >Submit</div>
+                    <hr />
                 </div>
 
+                {/* posts */}
                 {this.props.posts.map((item, i) => {
                     // console.log(item)
                     return (

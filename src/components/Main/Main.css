@@ -1,29 +1,27 @@
 /* .main_wrapper {
     border: 1px black solid;
 } */
-
-@import url('https://fonts.googleapis.com/css?family=Oswald:500');
-
+@import url("https://fonts.googleapis.com/css?family=Oswald:500");
 * {
-    box-sizing: border-box;
-}
+  box-sizing: border-box; }
 
 .main_nav {
-    display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	justify-content: space-around;
-	align-items: center;
-    align-content: center;
-    /* border: 1px black solid; */
-    background: #6c737e;
-    height: 60px;
-    width: 100%;
-}
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+  /* border: 1px black solid; */
+  background: #6c737e;
+  height: 60px;
+  width: 100%; }
 
 .btn {
-    text-decoration: none;
-    color: white;
-    font-family: 'Oswald', sans-serif;  
-    cursor: pointer;  
-}
+  text-decoration: none;
+  color: white;
+  font-family: 'Oswald', sans-serif;
+  cursor: pointer; }
+
+.link {
+  text-decoration: none; }

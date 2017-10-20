@@ -10,18 +10,27 @@ module.exports = {
     getPosts: (req, res, next) => {
         const db = req.app.get('db');
         let {id} = req.params;
-        // console.log(req.params.id)
+        // console.log(req.params)
         db.find_posts(id)
         .then(response => res.status(200).send(response))
         .catch( (err) => res.status(500).send('something went wrong'))
     },
 
-    getUser: (req, res, next) => {
+    getCurrentUser: (req, res, next) => {
         const db = req.app.get('db');
-        let {id} = req.params;
-        // console.log(req)
-        db.find_user_from_id(id)
+        let {user_id} = req.user;
+        // console.log(user_id)
+        db.find_current_user(user_id)
         .then(response => res.status(200).send(response))
-    }
+        .catch(err => res.status(500).send('something went wrong'))
+    },
 
+    // createPost: (req, res, next) => {
+    //     const db = req.app.get('db');
+    //     let {} = req.params;
+    //     console.log(req.params)
+    //     db.create_op()
+    //     .then(response => res.status(200).send(response))
+    //     .catch(err => res.status(500).send('something went wrong'))
+    // }
 }
