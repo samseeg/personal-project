@@ -21,15 +21,26 @@ class Posts extends Component {
 
     //For later use when I need the user id for making posts
 
-    // componentDidMount() {
-    //     axios.get('/currentuser')
-    //         .then(response => {
-    //             // console.log(response.data[0].user_id)
-    //             this.setState({
-    //                 userId: response.data[0].user_id
-    //             })
-    //         })
-    // }
+    componentDidMount() {
+        axios.get('/currentuser')
+            .then(response => {
+                // console.log(response.data[0].user_id)
+                this.setState({
+                    userId: response.data[0].user_id
+                })
+            })
+    }
+
+    submit(op, cat_id, user_id) {
+        axios.post('/posts', {
+            op,
+            cat_id,
+            user_id
+        })
+        .then(response => {
+            // console.log(response)
+        })
+    }
 
 
     render() {
@@ -48,7 +59,9 @@ class Posts extends Component {
                     }} placeholder='Make a post' />
 
                     {/* submit button */}
-                    <div className='subButt' >Submit</div>
+                    <div className='subButt' onClick={() => {
+                        this.submit(this.state.post, this.props.posts[0].cat_id, this.state.userId)
+                    }}>Submit</div>
                     <hr />
                 </div>
 

@@ -77,7 +77,7 @@ passport.deserializeUser(function (id, done) {
 
 const controller = require('./controller/controller');
 
-app.get('/main/category', controller.getCategories);
+app.get('/categories', controller.getCategories);
 app.get('/main/category/:id', controller.getPosts);
 app.get('/currentuser', controller.getCurrentUser);
 app.post('/posts', controller.createPost);

@@ -28,7 +28,7 @@ class Main extends Component {
                     
                 </div>
                 
-                <Link to='/category' className='cat_title link'><div className='cat_title' onClick={() => this.props.emptyPosts()}>
+                <Link to='/categories' className='cat_title link'><div className='cat_title' onClick={() => this.props.emptyPosts()}>
                         Categories
                 </div>
                 </Link>

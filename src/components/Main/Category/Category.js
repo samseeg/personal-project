@@ -17,7 +17,7 @@ class Category extends Component {
     }
 
     componentDidMount() {
-        axios.get('/main/category')
+        axios.get('/categories')
             .then(response => {
                 // console.log(response.data)
                 this.setState({
@@ -37,7 +37,7 @@ class Category extends Component {
                         {this.state.categories.map((item, i) => {
                             // console.log(item)
                             return (
-                                <Link key={i} className='link' to='/category/posts'><div className='cat' key={i} onClick={() => this.props.catClick(item.cat_id)}>{item.cat_name}</div>
+                                <Link key={i} className='link' to={`/category/${item.cat_name}`}><div className='cat' key={i} onClick={() => this.props.catClick(item.cat_id)}>{item.cat_name}</div>
                                 </Link>
                             )
                         })}

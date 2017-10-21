@@ -2,8 +2,7 @@ import axios from 'axios';
 
 const initialState = {
     user: {},
-    posts: [],
-    newPost: {}
+    posts: []
 }
 
 const GET_USER_INFO = 'GET_USER_INFO';
@@ -24,7 +23,7 @@ export function getUserInfo() {
 export function catClick(catId) {
     const post_info = axios.get(`/main/category/${catId}`)
         .then(response => {
-            console.log(response.data)
+            // console.log(response.data)
             return response.data
         })
     return {
@@ -57,7 +56,7 @@ export default function reducer(state = initialState, action) {
             return {
                 posts: action.payload
             }
-            
+
         default:
             return state;
     }
