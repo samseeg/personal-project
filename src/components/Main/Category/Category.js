@@ -4,7 +4,6 @@ import axios from 'axios';
 import Main from '../Main';
 
 import { connect } from 'react-redux';
-import { catClick } from '../../../ducks/users';
 import {Link} from 'react-router-dom';
 import './Category.css';
 
@@ -37,7 +36,7 @@ class Category extends Component {
                         {this.state.categories.map((item, i) => {
                             // console.log(item)
                             return (
-                                <Link key={i} className='link' to={`/categories/${item.cat_id}`}><div className='cat' key={i} onClick={() => this.props.catClick(item.cat_id)}>{item.cat_name}</div>
+                                <Link key={i} className='link' to={`/categories/${item.cat_id}`}><div className='cat' key={i} >{item.cat_name}</div>
                                 </Link>
                             )
                         })}
@@ -53,6 +52,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, {
-    catClick: catClick
-})(Category);
+export default connect(mapStateToProps)(Category);

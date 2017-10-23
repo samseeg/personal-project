@@ -34,7 +34,9 @@
   color: #4444da; }
 
 .post {
-  font-size: 28px; }
+  font-size: 28px;
+  text-align: left;
+  padding: 5px; }
 
 .user_info {
   color: black;

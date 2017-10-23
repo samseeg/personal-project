@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Main from '../Main';
 import axios from 'axios';
 
-
+import {catClick} from '../../../ducks/users';
 
 import './Posts.css';
 
@@ -19,7 +19,7 @@ class Posts extends Component {
         }
     }
 
-    //For later use when I need the user id for making posts
+    //user and URL params for posts display
 
     componentDidMount() {
         axios.get('/currentuser')
@@ -29,6 +29,10 @@ class Posts extends Component {
                     userId: response.data[0].user_id
                 })
             })
+
+            // console.log(this.props.match.params.id)
+
+            this.props.catClick(this.props.match.params.id)
     }
 
     submit(op, cat_id, user_id) {
@@ -39,6 +43,12 @@ class Posts extends Component {
         })
         .then(response => {
             // console.log(response)
+        })
+
+        this.props.catClick(this.props.match.params.id)
+
+        this.setState({
+            post: ''
         })
     }
 
@@ -95,4 +105,6 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(Posts);
+export default connect(mapStateToProps, {
+    catClick: catClick
+})(Posts);

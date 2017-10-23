@@ -28,7 +28,7 @@ module.exports = {
     createPost: (req, res, next) => {
         const db = req.app.get('db');
         let {op, cat_id, user_id} = req.body;
-        console.log(req.body)
+        // console.log(req.body)
         db.create_op(op, cat_id, user_id)
         .then(response => res.status(200).send(response))
         .catch(err => res.status(500).send('something went wrong'))
