@@ -11,7 +11,7 @@ export default (
         <Route exact path='/' component={Login} />
         <Route path='/main' component={Main} />
         <Route exact path='/categories' component={Category} />
-        <Route path='/category/:id' component={Posts} />
+        <Route path='/categories/:id' component={Posts} />
         <Route path='/profile' component={Profile} />
     </Switch>
 )

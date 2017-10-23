@@ -21,7 +21,7 @@ export function getUserInfo() {
 }
 
 export function catClick(catId) {
-    const post_info = axios.get(`/main/category/${catId}`)
+    const post_info = axios.get(`/main/categories/${catId}`)
         .then(response => {
             // console.log(response.data)
             return response.data
