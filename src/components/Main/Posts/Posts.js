@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Main from '../Main';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 
 import {catClick} from '../../../ducks/users';
 
@@ -14,7 +15,6 @@ class Posts extends Component {
 
         this.state = {
             userId: {},
-            catId: {},
             post: ''
         }
     }
@@ -42,10 +42,9 @@ class Posts extends Component {
             user_id
         })
         .then(response => {
-            // console.log(response)
-        })
 
-        this.props.catClick(this.props.match.params.id)
+        this.props.catClick(this.props.match.params.id);
+        })
 
         this.setState({
             post: ''
@@ -85,10 +84,11 @@ class Posts extends Component {
                                 <div className='user_info'>
                                     {item.user_name}
                                 </div>
-
+                                <Link key={i} className='link' to={`/categories/${this.props.match.params.id}/${item.op_id}`}>
                                 <div className='post'>
                                     {item.op}
                                 </div>
+                                </Link>
                             </div>
 
                         </div>
