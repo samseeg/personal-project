@@ -9,18 +9,86 @@
 	justify-content: space-around;
 	align-items: center;
     width: 100%;
+
+    .outer_post1 {
+        padding: 5px;
+        margin: 5px;
+        width: 95vw;
+    }
+
+    .posts1 {
+        margin-bottom: 10px;
+        background: white;
+        width: 90vw;
+        cursor: pointer;
+        color: black;
+    }
+    .post1 {
+        font-size: 16px;
+        text-align: left;
+        padding: 5px;
+        color: black;
+    }
 }
 
-.posts {
-    margin-bottom: 10px;
-    background: white;
-    width: 340px;
-    cursor: pointer;
-    color: black;
+.outer_comments {
+    display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: center;
+    width: 100%;
+
+    .comments {
+        margin-bottom: 10px;
+        background: white;
+        width: 90vw;
+        cursor: pointer;
+        color: black;
+    }
+
+    .comment {
+        font-size: 16px;
+        text-align: left;
+        padding: 5px;
+        color: black;
+    }
 }
-.post {
-    font-size: 28px;
-    text-align: left;
-    padding: 5px;
-    color: black;
+
+.newPost {
+    display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    padding: 10px 0;
+    
+    input {
+        width: 95vw;
+        height: 32px;
+        font-size: 20px;
+        text-align: center;
+        border: 1px solid #bfbfbf;
+    }
+
+    input:focus {
+        outline-color: #3978b5;;
+    }
+
+    .subButt {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        align-items: center;
+        height: 30px;
+        width: 20vw;
+        border-radius: 5px;
+        background: #3878b5;
+        color: white;
+        text-align: center;
+    }
 }
+

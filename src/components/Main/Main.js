@@ -18,8 +18,8 @@ class Main extends Component {
                             Profile
                         </Link>
                     </div>
-                    <div>
-                        Bars
+                    <div className='name'>
+                        baarzz
                         </div>
                     <a href='/auth/logout' className='btn'><div>
                         Logout

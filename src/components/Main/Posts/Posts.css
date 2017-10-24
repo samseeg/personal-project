@@ -35,9 +35,6 @@
     background: #3878b5;
     color: white;
     text-align: center; }
-  .newPost hr {
-    width: 100%;
-    padding: 0; }
 
 .outer_post {
   border: 1px solid #cecece;
@@ -55,7 +52,7 @@
   font-size: 25px;
   text-align: left;
   padding: 5px;
-  width: 94vw;
+  width: 92vw;
   color: black;
   font-weight: bold;
   font-family: helvetica, sans-serif; }

@@ -17,6 +17,7 @@ class Posts extends Component {
             userId: {},
             post: ''
         }
+        this.submit = this.submit.bind(this)
     }
 
     //user and URL params for posts display

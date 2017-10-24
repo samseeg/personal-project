@@ -9,6 +9,7 @@ const initialState = {
 const GET_USER_INFO = 'GET_USER_INFO';
 const GET_POSTS = 'GET_POSTS';
 const GET_POST = 'GET_POST';
+const GET_COMMENTS = 'GET_COMMENTS';
 const EMPTY_POSTS = 'EMPTY_POSTS';
 
 export function getUserInfo() {
@@ -46,6 +47,18 @@ export function postClick(op_id) {
     }
 }
 
+export function commentsPull(op_id) {
+    const comments_info = axios.get(`/comments/${op_id}`)
+        .then(response => {
+            // console.log(response)
+            return response.data
+        })
+    return {
+        type: GET_COMMENTS,
+        payload: comments_info
+    }
+}
+
 export function emptyPosts() {
     return {
         type: EMPTY_POSTS,
@@ -62,19 +75,17 @@ export default function reducer(state = initialState, action) {
 
         case GET_POSTS + '_FULFILLED':
             // console.log(action.payload)
-            return {
-                posts: action.payload
-            }
+            return Object.assign({}, state, { posts: action.payload })
 
         case GET_POST + '_FULFILLED':
-            return {
-                posts: action.payload
-            }
+            return Object.assign({}, state, { posts: action.payload })
+
+        case GET_COMMENTS + '_FULFILLED':
+            // console.log(action.payload)
+            return Object.assign({}, state, { comments: action.payload })
 
         case EMPTY_POSTS:
-            return {
-                posts: action.payload
-            }
+            return Object.assign({}, state, { posts: action.payload })
 
         default:
             return state;
