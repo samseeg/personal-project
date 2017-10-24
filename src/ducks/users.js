@@ -10,7 +10,7 @@ const GET_USER_INFO = 'GET_USER_INFO';
 const GET_POSTS = 'GET_POSTS';
 const GET_POST = 'GET_POST';
 const GET_COMMENTS = 'GET_COMMENTS';
-const EMPTY_POSTS = 'EMPTY_POSTS';
+const EMPTY = 'EMPTY';
 
 export function getUserInfo() {
     const userData = axios.get('/auth/me')
@@ -61,7 +61,7 @@ export function commentsPull(op_id) {
 
 export function emptyPosts() {
     return {
-        type: EMPTY_POSTS,
+        type: EMPTY,
         payload: []
     }
 }
@@ -84,8 +84,8 @@ export default function reducer(state = initialState, action) {
             // console.log(action.payload)
             return Object.assign({}, state, { comments: action.payload })
 
-        case EMPTY_POSTS:
-            return Object.assign({}, state, { posts: action.payload })
+        case EMPTY:
+            return Object.assign({}, state, { posts: action.payload, comments: action.payload })
 
         default:
             return state;

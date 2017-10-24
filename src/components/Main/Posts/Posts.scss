@@ -69,8 +69,17 @@
 }
 
 .user_info {
+    display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: center;
     color: #3878b5;
     font-size: 12px;
     text-align: left;
     padding-left: 6px;
+
+    .user_name {
+        margin-left: 5px
+    }
 }

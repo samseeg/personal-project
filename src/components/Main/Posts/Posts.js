@@ -68,10 +68,11 @@ class Posts extends Component {
                         })
                     }} placeholder='Make a post' />
 
-                    {/* submit button */}
+                    {this.state.post ?
                     <div className='subButt' onClick={() => {
                         this.submit(this.state.post, this.props.posts[0].cat_id, this.state.userId)
                     }}>Submit</div>
+                    : null}
                 </div>
 
                 {/* posts */}
@@ -82,7 +83,10 @@ class Posts extends Component {
                             <div className='posts' key={i}>
 
                                 <div className='user_info'>
+                                    <img className='avatar' src={item.img} alt='avatar'/>
+                                    <div className='user_name'>
                                     {item.user_name}
+                                    </div>
                                 </div>
                                 <Link key={i} className='link' to={`/categories/${this.props.match.params.id}/${item.op_id}`}>
                                 <div className='post'>

@@ -35,9 +35,6 @@ class Comments extends Component {
     }
 
     submit(op_comment, op_id, user_id) {
-        if (user_id === {}) {
-            alert('Hi')
-        }
         axios.post('/comment', {
             op_comment,
             op_id,
@@ -54,7 +51,6 @@ class Comments extends Component {
     }
 
 
-
     render() {
 
         return (
@@ -66,7 +62,10 @@ class Comments extends Component {
                             <div key={i} className='outer_post1'>
                                 <div className='posts1' key={i}>
                                     <div className='user_info'>
+                                        <img className='avatar' src={item.img} alt='avatar' />
+                                        <div className='user_name'>
                                         {item.user_name}
+                                        </div>
                                     </div>
                                     <div className='post1'>
                                         {item.op}
@@ -87,30 +86,36 @@ class Comments extends Component {
                         })
                     }} placeholder='Make a comment' />
 
-                    {/* submit button */}
-                    <div className='subButt' onClick={() => {
-                        this.submit(this.state.comment, this.props.match.params.id, this.state.userId)
-                    }}>Submit</div>
+                    {this.state.comment ?
+                        
+                        < div className='subButt' onClick={() => {
+                            this.submit(this.state.comment, this.props.match.params.id, this.state.userId)
+                        }}>Submit</div>
+                : null}
+
                 </div>
 
-                <div>
-                    {this.props.comments.map((item, i) => {
-                        // console.log(item)
-                        return (
-                            <div key={i} className='outer_comments'>
-                                <div key={i} className='comments'>
-                                    <div className='user_info'>
-                                        {item.user_name}
-                                        <div className='comment'>
-                                            {item.op_comment}
-                                        </div>
+            <div>
+                {this.props.comments.map((item, i) => {
+                    // console.log(item)
+                    return (
+                        <div key={i} className='outer_comments'>
+                            <div key={i} className='comments'>
+                                <div className='user_info'>
+                                    <img className='avatar' src={item.img} alt='avatar' />
+                                    <div className='user_name'>
+                                    {item.user_name}
+                                    </div>
+                                    <div className='comment'>
+                                        {item.op_comment}
                                     </div>
                                 </div>
                             </div>
-                        )
-                    })}
-                </div>
+                        </div>
+                    )
+                })}
             </div>
+            </div >
         )
     }
 
