@@ -2,11 +2,13 @@ import axios from 'axios';
 
 const initialState = {
     user: {},
-    posts: []
+    posts: [],
+    comments: []
 }
 
 const GET_USER_INFO = 'GET_USER_INFO';
 const GET_POSTS = 'GET_POSTS';
+const GET_POST = 'GET_POST';
 const EMPTY_POSTS = 'EMPTY_POSTS';
 
 export function getUserInfo() {
@@ -20,14 +22,26 @@ export function getUserInfo() {
     }
 }
 
-export function catClick(catId) {
-    const post_info = axios.get(`/main/categories/${catId}`)
+export function postPull(catId) {
+    const post_info = axios.get(`/categories/${catId}`)
         .then(response => {
             // console.log(response.data)
             return response.data
         })
     return {
         type: GET_POSTS,
+        payload: post_info
+    }
+}
+
+export function postClick(op_id) {
+    const post_info = axios.get(`/categories/posts/${op_id}`)
+        .then(response => {
+            // console.log(response.data)
+            return response.data
+        })
+    return {
+        type: GET_POST,
         payload: post_info
     }
 }
@@ -48,6 +62,11 @@ export default function reducer(state = initialState, action) {
 
         case GET_POSTS + '_FULFILLED':
             // console.log(action.payload)
+            return {
+                posts: action.payload
+            }
+
+        case GET_POST + '_FULFILLED':
             return {
                 posts: action.payload
             }

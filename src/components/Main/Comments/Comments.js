@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import { connect } from 'react-redux';
+
 import Main from '../Main';
-// import axios from 'axios';
+
+import { postClick } from '../../../ducks/users';
 
 import './Comments.css';
 
@@ -9,8 +13,23 @@ class Comments extends Component {
         super(props);
 
         this.state = {
-
+            userId: {},
+            comment: ''
         }
+    }
+
+    componentDidMount() {
+        axios.get('currentuser')
+            .then(response => {
+                this.setState({
+                    userId: response.data[0].user_id
+                })
+            })
+
+        this.props.postClick(this.props.match.params.id)
+
+        // setTimeout(() => { console.log(this.props.posts[0].op) }, 500)
+
     }
 
 
@@ -20,9 +39,19 @@ class Comments extends Component {
         return (
             <div className='com_wrapper'>
                 <Main />
-                
-                <div className='com_container'>
-                    
+
+                {this.props.posts.map((item, i) => {
+                    return (
+                        <div className='posts' key={i}>
+                        <div className='post'>
+                                {item.op}
+                            </div>
+                            </div>
+                    )
+                })}
+
+                <div className='comment'>
+
                 </div>
             </div>
         )
@@ -34,7 +63,13 @@ class Comments extends Component {
 
 
 
+function mapStateToProps(state) {
+    return {
+        posts: state.posts
+    }
+}
 
 
-
-export default Comments;
+export default connect(mapStateToProps, {
+    postClick: postClick
+})(Comments);

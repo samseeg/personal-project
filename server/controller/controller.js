@@ -16,6 +16,15 @@ module.exports = {
         .catch( (err) => res.status(500).send('something went wrong'))
     },
 
+    get1Post: (req, res, next) => {
+        const db = req.app.get('db');
+        let {id} = req.params;
+        // console.log(req)
+        db.find_op(id)
+        .then(response => res.status(200).send(response))
+        .catch(err => res.status(500).send('something went wrong'))
+    },
+
     getCurrentUser: (req, res, next) => {
         const db = req.app.get('db');
         let {user_id} = req.user;

@@ -3,7 +3,7 @@ import Main from '../Main';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 
-import {catClick} from '../../../ducks/users';
+import {postPull} from '../../../ducks/users';
 
 import './Posts.css';
 
@@ -32,7 +32,7 @@ class Posts extends Component {
 
             // console.log(this.props.match.params.id)
 
-            this.props.catClick(this.props.match.params.id)
+            this.props.postPull(this.props.match.params.id)
     }
 
     submit(op, cat_id, user_id) {
@@ -43,7 +43,7 @@ class Posts extends Component {
         })
         .then(response => {
 
-        this.props.catClick(this.props.match.params.id);
+        this.props.postPull(this.props.match.params.id);
         })
 
         this.setState({
@@ -71,14 +71,13 @@ class Posts extends Component {
                     <div className='subButt' onClick={() => {
                         this.submit(this.state.post, this.props.posts[0].cat_id, this.state.userId)
                     }}>Submit</div>
-                    <hr />
                 </div>
 
                 {/* posts */}
                 {this.props.posts.map((item, i) => {
                     // console.log(item)
                     return (
-                        <div key={i}>
+                        <div key={i} className='outer_post'>
                             <div className='posts' key={i}>
 
                                 <div className='user_info'>
@@ -106,5 +105,5 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, {
-    catClick: catClick
+    postPull: postPull
 })(Posts);

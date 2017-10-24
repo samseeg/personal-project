@@ -27,11 +27,13 @@ class Main extends Component {
 
                     
                 </div>
+                <hr/>
                 
                 <Link to='/categories' className='cat_title link'><div className='cat_title' onClick={() => this.props.emptyPosts()}>
                         Categories
                 </div>
                 </Link>
+                <hr className='cat_sep'/>
             </div>
         )
     }

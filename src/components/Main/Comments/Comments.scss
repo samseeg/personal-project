@@ -1,3 +1,26 @@
 .com_container {
     color: black;
 }
+
+.com_wrapper {
+    display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: center;
+    width: 100%;
+}
+
+.posts {
+    margin-bottom: 10px;
+    background: white;
+    width: 340px;
+    cursor: pointer;
+    color: black;
+}
+.post {
+    font-size: 28px;
+    text-align: left;
+    padding: 5px;
+    color: black;
+}
