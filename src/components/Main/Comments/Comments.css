@@ -1,5 +1,6 @@
 .com_container {
-  color: black; }
+  color: black;
+  width: 100%; }
 
 .com_wrapper {
   display: flex;
@@ -7,7 +8,8 @@
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
-  width: 100%; }
+  width: 100%;
+  margin-top: 90px; }
   .com_wrapper .outer_post1 {
     padding: 5px;
     margin: 5px;
@@ -24,24 +26,13 @@
     padding: 5px;
     color: black; }
 
-.outer_comments {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%; }
-  .outer_comments .comments {
-    margin-bottom: 10px;
-    background: white;
-    width: 90vw;
-    cursor: pointer;
-    color: black; }
-  .outer_comments .comment {
-    font-size: 16px;
-    text-align: left;
-    padding: 5px;
-    color: black; }
+.outer_comments .comment {
+  font-size: 16px;
+  text-align: left;
+  padding: 5px;
+  color: black;
+  width: 90vw;
+  word-wrap: break-word; }
 
 .newPost {
   display: flex;

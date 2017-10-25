@@ -64,7 +64,7 @@ class Comments extends Component {
                                     <div className='user_info'>
                                         <img className='avatar' src={item.img} alt='avatar' />
                                         <div className='user_name'>
-                                        {item.user_name}
+                                            {item.user_name}
                                         </div>
                                     </div>
                                     <div className='post1'>
@@ -87,34 +87,34 @@ class Comments extends Component {
                     }} placeholder='Make a comment' />
 
                     {this.state.comment ?
-                        
+
                         < div className='subButt' onClick={() => {
                             this.submit(this.state.comment, this.props.match.params.id, this.state.userId)
                         }}>Submit</div>
-                : null}
+                        : null}
 
                 </div>
 
-            <div>
-                {this.props.comments.map((item, i) => {
-                    // console.log(item)
-                    return (
-                        <div key={i} className='outer_comments'>
-                            <div key={i} className='comments'>
-                                <div className='user_info'>
-                                    <img className='avatar' src={item.img} alt='avatar' />
-                                    <div className='user_name'>
-                                    {item.user_name}
+                <div>
+                    {this.props.comments.map((item, i) => {
+                        // console.log(item)
+                        return (
+                            <div key={i} className='outer_comments'>
+                                <div key={i} className='comments'>
+                                    <div className='user_info'>
+                                        <img className='avatar' src={item.img} alt='avatar' />
+                                        <div className='user_name'>
+                                            {item.user_name}
+                                        </div>
                                     </div>
                                     <div className='comment'>
                                         {item.op_comment}
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    )
-                })}
-            </div>
+                        )
+                    })}
+                </div>
             </div >
         )
     }

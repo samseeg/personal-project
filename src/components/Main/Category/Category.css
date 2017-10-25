@@ -6,7 +6,8 @@
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: space-around;
-  align-items: center; }
+  align-items: center;
+  margin-top: 90px; }
 
 .cat_container {
   display: flex;
