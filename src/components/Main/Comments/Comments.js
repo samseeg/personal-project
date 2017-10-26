@@ -20,12 +20,6 @@ class Comments extends Component {
     }
 
     componentDidMount() {
-        axios.get('currentuser')
-            .then(response => {
-                this.setState({
-                    userId: response.data[0].user_id
-                })
-            })
         var par_id = this.props.match.params.id;
 
         this.props.emptyPosts()
@@ -89,7 +83,7 @@ class Comments extends Component {
                     {this.state.comment ?
 
                         < div className='subButt' onClick={() => {
-                            this.submit(this.state.comment, this.props.match.params.id, this.state.userId)
+                            this.submit(this.state.comment, this.props.match.params.id, this.props.currentUser.user_id)
                         }}>Submit</div>
                         : null}
 
@@ -131,7 +125,8 @@ class Comments extends Component {
 function mapStateToProps(state) {
     return {
         posts: state.posts,
-        comments: state.comments
+        comments: state.comments,
+        currentUser: state.currentUser
     }
 }
 

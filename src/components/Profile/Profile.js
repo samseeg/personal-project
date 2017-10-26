@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Profile.css';
 
 import { userPostsPull, emptyPosts } from '../../ducks/users';
@@ -15,7 +15,6 @@ class Profile extends Component {
         super(props);
 
         this.state = {
-            userId: {},
             newUserName: '',
             edit: false
         }
@@ -23,21 +22,19 @@ class Profile extends Component {
 
 
     componentDidMount() {
-        axios.get('currentuser')
-            .then(response => {
-                this.setState({
-                    userId: response.data[0]
-                })
-
-                // console.log(this.state.userId)
-                this.props.emptyPosts()
-                this.props.userPostsPull(this.state.userId.user_id)
-            })
+        this.props.emptyPosts()
+        this.props.userPostsPull(this.props.currentUser.user_id)
 
     }
 
-    deletePost(post) {
-        
+    deletePost(op_id) {
+        axios.delete('/deletepost', {
+            op_id
+        })
+
+            .then(response => {
+                this.props.userPostsPull(this.props.currentUser.user_id)
+            })
     }
 
 
@@ -50,10 +47,10 @@ class Profile extends Component {
                     <Main />
                 </div>
                 <div className='profile'>
-                    <img className='profile_pic' src={this.state.userId.img} alt='profile avatar' />
+                    <img className='profile_pic' src={this.props.currentUser.img} alt='profile avatar' />
                     <div className='profile_name'>
                         <div>
-                            {this.state.userId.user_name}
+                            {this.props.currentUser.user_name}
                         </div>
                         <img src={smiley} alt='smiley' />
                     </div>
@@ -74,7 +71,15 @@ class Profile extends Component {
                                         {item.op}
                                     </div>
                                 </Link>
+
+
                             </div>
+                            <div className='delete_post' onClick={() => {
+                                // console.log(item.op_id)
+                                this.deletePost(item.op_id)
+                            }}>
+                                delete
+                                    </div>
 
                         </div>
                     )
@@ -90,7 +95,8 @@ class Profile extends Component {
 function mapStateToProps(state) {
     return {
         posts: state.posts,
-        user: state.user
+        user: state.user,
+        currentUser: state.currentUser
     }
 }
 

@@ -1,2 +1,2 @@
-delete from original posts
+delete from original_posts
 where op_id = $1

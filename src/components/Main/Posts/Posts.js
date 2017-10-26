@@ -14,7 +14,6 @@ class Posts extends Component {
         super(props);
 
         this.state = {
-            userId: {},
             post: ''
         }
         this.submit = this.submit.bind(this)
@@ -23,14 +22,6 @@ class Posts extends Component {
     //user and URL params for posts display
 
     componentDidMount() {
-        axios.get('/currentuser')
-            .then(response => {
-                // console.log()
-                this.setState({
-                    userId: response.data[0].user_id
-                })
-            })
-
         // console.log(this.props.match.params.id)
 
         this.props.postPull(this.props.match.params.id)
@@ -70,7 +61,7 @@ class Posts extends Component {
 
                     {this.state.post ?
                         <div className='subButt' onClick={() => {
-                            this.submit(this.state.post, this.props.posts[0].cat_id, this.state.userId)
+                            this.submit(this.state.post, this.props.posts[0].cat_id, this.props.currentUser.user_id)
                         }}>Submit</div>
                         : null}
                 </div>
@@ -105,7 +96,8 @@ class Posts extends Component {
 
 function mapStateToProps(state) {
     return {
-        posts: state.posts
+        posts: state.posts,
+        currentUser: state.currentUser
     }
 }
 

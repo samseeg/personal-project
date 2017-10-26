@@ -2,11 +2,13 @@ import axios from 'axios';
 
 const initialState = {
     user: {},
+    currentUser: {},
     posts: [],
     comments: []
 }
 
 const GET_USER_INFO = 'GET_USER_INFO';
+const GET_CURRENT_USER = 'GET_CURRENT_USER';
 const GET_POSTS = 'GET_POSTS';
 const GET_POST = 'GET_POST';
 const GET_USER_POSTS = 'GET_USER_POSTS';
@@ -21,6 +23,18 @@ export function getUserInfo() {
     return {
         type: GET_USER_INFO,
         payload: userData
+    }
+}
+
+export function getCurrentUser() {
+    const getUser = axios.get('/currentuser')
+        .then(response => {
+            // console.log(response.data[0])
+            return response.data[0]
+        })
+    return {
+        type: GET_CURRENT_USER,
+        payload: getUser
     }
 }
 
@@ -83,8 +97,11 @@ export default function reducer(state = initialState, action) {
     // console.log(action)
     switch (action.type) {
         case GET_USER_INFO + '_FULFILLED':
-        // console.log(this.state.user)
+            // console.log(this.state.user)
             return Object.assign({}, state, { user: action.payload })
+
+        case GET_CURRENT_USER + '_FULFILLED':
+            return Object.assign({}, state, { currentUser: action.payload })
 
         case GET_POSTS + '_FULFILLED':
             // console.log(initialState)

@@ -5,6 +5,9 @@ import Main from '../Main';
 
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
+
+import {getCurrentUser} from '../../../ducks/users';
+
 import './Category.css';
 
 class Category extends Component {
@@ -23,6 +26,8 @@ class Category extends Component {
                     categories: response.data
                 })
             })
+
+            this.props.getCurrentUser()
     }
 
 
@@ -52,4 +57,6 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(Category);
+export default connect(mapStateToProps, {
+    getCurrentUser: getCurrentUser
+})(Category);

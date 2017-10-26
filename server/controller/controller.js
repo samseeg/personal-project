@@ -71,6 +71,7 @@ module.exports = {
 
     deletePost: (req, res, next) => {
         const db = req.app.get('db')
+        console.log(req.body)
         let {op_id} = req.body;
         db.delete_post(op_id)
         .then(response => res.status(200).send(response))
