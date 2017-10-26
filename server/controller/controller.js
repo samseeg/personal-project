@@ -71,10 +71,18 @@ module.exports = {
 
     deletePost: (req, res, next) => {
         const db = req.app.get('db')
-        console.log(req.body)
-        let {op_id} = req.body;
-        db.delete_post(op_id)
+        // console.log(req.params)
+        let {id} = req.params;
+        db.delete_post(id)
         .then(response => res.status(200).send(response))
         .catch(err => res.status(500).send('something went wrong'))
+    },
+
+    deleteComments: (req, res, next) => {
+        const db = req.app.get('db')
+        let {id} = req.params;
+        db.delete_comments(id)
+        .then(response => res.status(200).send(response))
+        .catch(err => res.status(200).send('something went wrong'))
     }
 }

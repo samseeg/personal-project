@@ -18,23 +18,22 @@ class Profile extends Component {
             newUserName: '',
             edit: false
         }
+        this.deletePost = this.deletePost.bind(this);
     }
 
 
     componentDidMount() {
         this.props.emptyPosts()
         this.props.userPostsPull(this.props.currentUser.user_id)
-
+        // console.log(this.props.currentUser)
     }
 
-    deletePost(op_id) {
-        axios.delete('/deletepost', {
-            op_id
-        })
-
+    deletePost(id) {
+        axios.delete(`/deletepost/${id}`)
             .then(response => {
                 this.props.userPostsPull(this.props.currentUser.user_id)
             })
+            axios.delete(`/deletecomments/${id}`)
     }
 
 
@@ -45,6 +44,16 @@ class Profile extends Component {
             <div className='profile_wrapper'>
                 <div>
                     <Main />
+
+                    <div>
+                <Link to={`/categories`} className='cat_title link'><div className='cat_title' onClick={() => this.props.emptyPosts()}>
+                        Categories
+                </div>
+                </Link>
+                </div>
+                
+                <hr className='cat_sep'/>
+
                 </div>
                 <div className='profile'>
                     <img className='profile_pic' src={this.props.currentUser.img} alt='profile avatar' />

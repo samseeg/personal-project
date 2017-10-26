@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import {Link} from 'react-router-dom';
 
 import Main from '../Main';
 
@@ -26,6 +27,8 @@ class Comments extends Component {
         this.props.postClick(par_id)
         this.props.commentsPull(par_id)
 
+        // console.log(this.props.history)
+
     }
 
     submit(op_comment, op_id, user_id) {
@@ -50,6 +53,15 @@ class Comments extends Component {
         return (
             <div className='com_wrapper'>
                 <Main />
+
+                <div>
+                <Link to={`/categories`} className='cat_title link'><div className='cat_title' onClick={() => this.props.emptyPosts()}>
+                        Categories
+                </div>
+                </Link>
+                </div>
+                
+                <hr className='cat_sep'/>
                 <div>
                     {this.props.posts.map((item, i) => {
                         return (

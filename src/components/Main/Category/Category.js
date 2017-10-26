@@ -37,6 +37,15 @@ class Category extends Component {
             <div className='cat_wrapper'>
                 <Main/>
 
+                <div>
+                <Link to='/categories' className='cat_title link'><div className='cat_title' onClick={() => this.props.emptyPosts()}>
+                        Categories
+                </div>
+                </Link>
+                </div>
+                
+                <hr className='cat_sep'/>
+
                     <div className='cat_container'>
                         {this.state.categories.map((item, i) => {
                             // console.log(item)

@@ -3,7 +3,7 @@ import Main from '../Main';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-import { postPull } from '../../../ducks/users';
+import { postPull, commentsPull, emptyPosts } from '../../../ducks/users';
 
 import './Posts.css';
 
@@ -25,6 +25,7 @@ class Posts extends Component {
         // console.log(this.props.match.params.id)
 
         this.props.postPull(this.props.match.params.id)
+        
     }
 
     submit(op, cat_id, user_id) {
@@ -49,6 +50,15 @@ class Posts extends Component {
             <div className='posts_container'>
                 <Main />
 
+                <div>
+                <Link to='/categories' className='cat_title link'><div className='cat_title' onClick={() => this.props.emptyPosts()}>
+                        Categories
+                </div>
+                </Link>
+                </div>
+                
+                <hr className='cat_sep'/>
+
                 <div className='newPost'>
 
                     {/* input for posts */}
@@ -61,7 +71,7 @@ class Posts extends Component {
 
                     {this.state.post ?
                         <div className='subButt' onClick={() => {
-                            this.submit(this.state.post, this.props.posts[0].cat_id, this.props.currentUser.user_id)
+                            this.submit(this.state.post, this.props.match.params.id, this.props.currentUser.user_id)
                         }}>Submit</div>
                         : null}
                 </div>
@@ -83,6 +93,9 @@ class Posts extends Component {
                                     <div className='post'>
                                         {item.op}
                                     </div>
+                                    <div>
+                                        comments
+                                        </div>
                                 </Link>
                             </div>
 
@@ -102,5 +115,7 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, {
-    postPull: postPull
+    postPull: postPull,
+    commentsPull: commentsPull,
+    emptyPosts: emptyPosts
 })(Posts);
