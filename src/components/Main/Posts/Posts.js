@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Main from '../Main';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-import {postPull} from '../../../ducks/users';
+import { postPull } from '../../../ducks/users';
 
 import './Posts.css';
 
@@ -25,15 +25,15 @@ class Posts extends Component {
     componentDidMount() {
         axios.get('/currentuser')
             .then(response => {
-                // console.log(response.data[0].user_id)
+                // console.log()
                 this.setState({
                     userId: response.data[0].user_id
                 })
             })
 
-            // console.log(this.props.match.params.id)
+        // console.log(this.props.match.params.id)
 
-            this.props.postPull(this.props.match.params.id)
+        this.props.postPull(this.props.match.params.id)
     }
 
     submit(op, cat_id, user_id) {
@@ -42,10 +42,10 @@ class Posts extends Component {
             cat_id,
             user_id
         })
-        .then(response => {
+            .then(response => {
 
-        this.props.postPull(this.props.match.params.id);
-        })
+                this.props.postPull(this.props.match.params.id);
+            })
 
         this.setState({
             post: ''
@@ -61,7 +61,7 @@ class Posts extends Component {
                 <div className='newPost'>
 
                     {/* input for posts */}
-                    <input type='text' value={this.state.post} onChange={e => {
+                    <textarea type='text' value={this.state.post} onChange={e => {
                         // console.log(this.state.post)
                         this.setState({
                             post: e.target.value
@@ -69,29 +69,29 @@ class Posts extends Component {
                     }} placeholder='Make a post' />
 
                     {this.state.post ?
-                    <div className='subButt' onClick={() => {
-                        this.submit(this.state.post, this.props.posts[0].cat_id, this.state.userId)
-                    }}>Submit</div>
-                    : null}
+                        <div className='subButt' onClick={() => {
+                            this.submit(this.state.post, this.props.posts[0].cat_id, this.state.userId)
+                        }}>Submit</div>
+                        : null}
                 </div>
 
                 {/* posts */}
                 {this.props.posts.map((item, i) => {
-                    // console.log(item)
+                    // console.log()
                     return (
                         <div key={i} className='outer_post'>
                             <div className='posts' key={i}>
 
                                 <div className='user_info'>
-                                    <img className='avatar' src={item.img} alt='avatar'/>
+                                    <img className='avatar' src={item.img} alt='avatar' />
                                     <div className='user_name'>
-                                    {item.user_name}
+                                        {item.user_name}
                                     </div>
                                 </div>
                                 <Link key={i} className='link' to={`/categories/${this.props.match.params.id}/${item.op_id}`}>
-                                <div className='post'>
-                                    {item.op}
-                                </div>
+                                    <div className='post'>
+                                        {item.op}
+                                    </div>
                                 </Link>
                             </div>
 

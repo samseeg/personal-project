@@ -34,6 +34,14 @@ module.exports = {
         .catch(err => res.status(500).send('something went wrong'))
     },
 
+    getUsersPosts: (req, res, next) => {
+        const db = req.app.get('db');
+        let {id} = req.params;
+        db.find_users_posts(id)
+        .then(response => res.status(200).send(response))
+        .catch(err => res.status(500).send('something went wrong'))
+    },
+
     getCurrentUser: (req, res, next) => {
         const db = req.app.get('db');
         let {user_id} = req.user;
@@ -59,5 +67,13 @@ module.exports = {
         db.create_comment(op_comment, op_id, user_id)
         .then(response => res.status(200).send(response))
         .catch(response => res.status(500).send('something went wrong'))
+    },
+
+    deletePost: (req, res, next) => {
+        const db = req.app.get('db')
+        let {op_id} = req.body;
+        db.delete_post(op_id)
+        .then(response => res.status(200).send(response))
+        .catch(err => res.status(500).send('something went wrong'))
     }
 }

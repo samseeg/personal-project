@@ -81,9 +81,11 @@ app.get('/categories', controller.getCategories);
 app.get('/categories/:id', controller.getPosts);
 app.get('/categories/posts/:id', controller.get1Post);
 app.get('/comments/:id', controller.getComments);
+app.get('/user/:id', controller.getUsersPosts);
 app.get('/currentuser', controller.getCurrentUser);
 app.post('/posts', controller.createPost);
 app.post('/comment', controller.createComment);
+app.delete('/deletepost', controller.deletePost);
 
 const PORT = 3005;
 app.listen(PORT, console.log(`Listening on port ${PORT}`))

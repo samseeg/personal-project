@@ -18,15 +18,16 @@
     height: 100px;
     padding: 10px 0;
     
-    input {
+    textarea {
         width: 95vw;
         height: 32px;
         font-size: 20px;
         text-align: center;
         border: 1px solid #bfbfbf;
+        resize: none;
     }
 
-    input:focus {
+    textarea:focus {
         outline-color: #3978b5;;
     }
 
@@ -53,8 +54,6 @@
 }
 
 .posts {
-    margin-bottom: 10px;
-    background: white;
     width: 90vw;
     cursor: pointer;
 }

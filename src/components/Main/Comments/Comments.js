@@ -96,6 +96,9 @@ class Comments extends Component {
                 </div>
 
                 <div>
+                    <div>
+                        Comments
+                        </div>
                     {this.props.comments.map((item, i) => {
                         // console.log(item)
                         return (

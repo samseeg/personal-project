@@ -2,10 +2,27 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
 import {emptyPosts} from '../../ducks/users';
-// import axios from 'axios';
+import axios from 'axios';
 import './Main.css';
 
 class Main extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            userId: {}
+        }
+    }
+
+    componentDidMount() {
+        axios.get('currentuser')
+            .then(response => {
+                this.setState({
+                    userId: response.data[0]
+                })
+            })
+
+    }
 
 
 
@@ -14,7 +31,7 @@ class Main extends Component {
             <div className='main_wrapper'>
                 <div className='main_nav'>
                     <div className='main_profile'>
-                        <Link className='btn' to='/profile'>
+                        <Link className='btn' to={`/profile/${this.state.userId.user_id}`}>
                             Profile
                         </Link>
                     </div>

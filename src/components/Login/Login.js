@@ -8,11 +8,11 @@ class Login extends Component {
         return (
             <div className='login_wrapper'>
                 <div className='login_title'>
-                    Bars
+                    baarzz
                     </div>
                     <div className='outer_btn'>
                 <div className='login_btn_div'>
-                    <a href={process.env.REACT_APP_LOGIN}className='login_btn'><div>Login/Register</div></a>
+                    <a href={process.env.REACT_APP_LOGIN}className='login_btn' id="hiw-login-container"><div>Login/Register</div></a>
                 </div>
                 </div>
             </div>
