@@ -46,14 +46,10 @@ class Posts extends Component {
     }
 
     // commentNum(item) {
-    //     axios.get(`/categories/${this.props.match.params.id}`)
-    //     .then(response => {
-    //         console.log(response.data)
-    //     })
 
     //     axios.get(`/comments/${item}`)
     //     .then(response => {
-    //         // console.log(response.data)
+    //         // console.log(response.data.length)
     //         this.setState({
     //             commentnums: response.data.length
     //         })
@@ -64,7 +60,9 @@ class Posts extends Component {
     render() {
         return (
             <div className='posts_container'>
+                <div className='main_container'>
                 <Main />
+                </div>
 
                 <div>
                 <Link to='/categories' className='cat_title link'><div className='cat_title' onClick={() => this.props.emptyPosts()}>
@@ -98,7 +96,7 @@ class Posts extends Component {
 
                 {/* posts */}
                 {this.props.posts.map((item, i) => {
-                    // console.log()
+                    // console.log(item)
                     return (
                         <div key={i} className='outer_post'>
                             <div className='posts' key={i}>
@@ -113,11 +111,11 @@ class Posts extends Component {
                                     <div className='post'>
                                         {item.op}
                                     </div>
-                                    {/* <div>
+                                    {/* {<div>
                                        2
-
+                                        {this.commentNum(item.op_id)}
                                        comments
-                                        </div> */}
+                                        </div>} */}
                                 </Link>
                             </div>
 

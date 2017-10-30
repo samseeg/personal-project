@@ -8,6 +8,8 @@ const express = require('express')
 
 const app = express();
 
+app.use( express.static( `${__dirname}/../build`));
+
 app.use(bodyParser.json());
 app.use(session({
     secret: process.env.SECRET,
@@ -83,11 +85,18 @@ app.get('/categories/posts/:id', controller.get1Post);
 app.get('/comments/:id', controller.getComments);
 app.get('/user/:id', controller.getUsersPosts);
 app.get('/currentuser', controller.getCurrentUser);
+
 app.post('/posts', controller.createPost);
 app.post('/comment', controller.createComment);
 app.post('/categorypost', controller.createCategory);
+
 app.delete('/deletepost/:id', controller.deletePost);
 app.delete('/deletecomments/:id', controller.deleteComments);
+
+const path = require('path')
+app.get('*', (req, res)=>{
+  res.sendFile(path.join(__dirname, '../build/index.html'));
+})
 
 const PORT = 3005;
 app.listen(PORT, console.log(`Listening on port ${PORT}`))
