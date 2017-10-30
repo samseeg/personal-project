@@ -14,7 +14,8 @@ class Posts extends Component {
         super(props);
 
         this.state = {
-            post: ''
+            post: '',
+            commentnums: []
         }
         this.submit = this.submit.bind(this)
     }
@@ -44,6 +45,21 @@ class Posts extends Component {
         })
     }
 
+    // commentNum(item) {
+    //     axios.get(`/categories/${this.props.match.params.id}`)
+    //     .then(response => {
+    //         console.log(response.data)
+    //     })
+
+    //     axios.get(`/comments/${item}`)
+    //     .then(response => {
+    //         // console.log(response.data)
+    //         this.setState({
+    //             commentnums: response.data.length
+    //         })
+    //     })
+    // }
+
 
     render() {
         return (
@@ -58,6 +74,10 @@ class Posts extends Component {
                 </div>
                 
                 <hr className='cat_sep'/>
+
+                <div>
+
+                    </div>
 
                 <div className='newPost'>
 
@@ -93,9 +113,11 @@ class Posts extends Component {
                                     <div className='post'>
                                         {item.op}
                                     </div>
-                                    <div>
-                                        comments
-                                        </div>
+                                    {/* <div>
+                                       2
+
+                                       comments
+                                        </div> */}
                                 </Link>
                             </div>
 

@@ -1,3 +1,3 @@
 insert into categories
 (cat_name)
-values('$1');
+values($1);

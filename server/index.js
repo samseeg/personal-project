@@ -85,6 +85,7 @@ app.get('/user/:id', controller.getUsersPosts);
 app.get('/currentuser', controller.getCurrentUser);
 app.post('/posts', controller.createPost);
 app.post('/comment', controller.createComment);
+app.post('/categorypost', controller.createCategory);
 app.delete('/deletepost/:id', controller.deletePost);
 app.delete('/deletecomments/:id', controller.deleteComments);
 

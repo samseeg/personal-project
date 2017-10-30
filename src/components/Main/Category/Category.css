@@ -8,6 +8,13 @@
   justify-content: space-around;
   align-items: center;
   margin-top: 60px; }
+  .cat_wrapper textarea {
+    width: 95vw;
+    height: 32px;
+    font-size: 20px;
+    text-align: center;
+    border: 1px solid #bfbfbf;
+    resize: none; }
 
 .cat_container {
   display: flex;
@@ -15,14 +22,18 @@
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
+  align-content: space-around;
   color: black;
-  width: 100%;
-  padding-top: 10px; }
+  min-height: 100px;
+  width: 95vw;
+  margin-top: 10px; }
 
 .cat {
   background: white;
   border: 2px solid #dedbdb;
   border-radius: 20px;
+  padding: 0 10px;
+  margin: 10px 0;
   min-width: 150px;
   cursor: pointer;
   font-size: 29px;

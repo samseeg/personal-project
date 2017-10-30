@@ -51,6 +51,15 @@ module.exports = {
         .catch(err => res.status(500).send('something went wrong'))
     },
 
+    createCategory: (req, res, next) => {
+        const db = req.app.get('db');
+        let {newCat} = req.body;
+        // console.log(req.body)
+        db.create_category(newCat)
+        .then(response => res.status(200).send(response))
+        .catch(err => res.status(500).send('something went wrong'))
+    },
+
     createPost: (req, res, next) => {
         const db = req.app.get('db');
         let {op, cat_id, user_id} = req.body;
@@ -69,6 +78,14 @@ module.exports = {
         .catch(response => res.status(500).send('something went wrong'))
     },
 
+    deleteCategory: (req, res, next) => {
+        const db = req.app.get('db');
+        let {id} = req.body;
+        db.delete_category(id)
+        .then(response => res.status(200).send(response))
+        .catch(err => res.status(500).send('something went wrong'))
+    },
+
     deletePost: (req, res, next) => {
         const db = req.app.get('db')
         // console.log(req.params)
@@ -84,5 +101,5 @@ module.exports = {
         db.delete_comments(id)
         .then(response => res.status(200).send(response))
         .catch(err => res.status(200).send('something went wrong'))
-    }
+    },
 }

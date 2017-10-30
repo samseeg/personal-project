@@ -4,9 +4,9 @@ import axios from 'axios';
 import Main from '../Main';
 
 import { connect } from 'react-redux';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-import {getCurrentUser} from '../../../ducks/users';
+import { getCurrentUser, emptyPosts } from '../../../ducks/users';
 
 import './Category.css';
 
@@ -14,8 +14,10 @@ class Category extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            categories: []
+            categories: [],
+            newCat: ''
         }
+        this.submit = this.submit.bind(this);
     }
 
     componentDidMount() {
@@ -27,7 +29,29 @@ class Category extends Component {
                 })
             })
 
-            this.props.getCurrentUser()
+        this.props.getCurrentUser()
+
+        // setTimeout(() => { console.log(this.props.currentUser) }, 2000)
+    }
+
+
+    submit(newCat) {
+        axios.post('/categorypost', {
+            newCat
+        })
+            .then(response => {
+                axios.get('/categories')
+                .then(response => {
+                    // console.log(response.data)
+                    this.setState({
+                        categories: response.data
+                    })
+                })
+            })
+
+        this.setState({
+            newCat: ''
+        })
     }
 
 
@@ -35,26 +59,53 @@ class Category extends Component {
     render() {
         return (
             <div className='cat_wrapper'>
-                <Main/>
+                <Main />
 
                 <div>
-                <Link to='/categories' className='cat_title link'><div className='cat_title' onClick={() => this.props.emptyPosts()}>
+                    <Link to='/categories' className='cat_title link'><div className='cat_title' onClick={() => this.props.emptyPosts()}>
                         Categories
                 </div>
-                </Link>
+                    </Link>
                 </div>
-                
-                <hr className='cat_sep'/>
 
-                    <div className='cat_container'>
-                        {this.state.categories.map((item, i) => {
-                            // console.log(item)
-                            return (
-                                <Link key={i} className='link' to={`/categories/${item.cat_id}`}><div className='cat' key={i} >{item.cat_name}</div>
-                                </Link>
-                            )
-                        })}
+                <hr className='cat_sep' />
+{/* 
+                {this.props.currentUser.king ?
+                    <div>
+
+                        <textarea type='text' value={this.state.newCat} onChange={e => {
+                            // console.log(this.state.newCat)
+                            this.setState({
+                                newCat: e.target.value
+                            })
+                        }} placeholder='Add new Category' />
+
+                        <div className='subButt' onClick={() => {
+                            this.submit(this.state.newCat)
+                        }}>Submit</div>
                     </div>
+                    : null
+                } */}
+
+                <div className='cat_container'>
+                    {this.state.categories.map((item, i) => {
+                        // console.log(item)
+                        return (
+                            <div key={i}>
+                            <Link key={i} className='link' to={`/categories/${item.cat_id}`}><div className='cat' key={i} >{item.cat_name}</div>
+                            </Link>
+{/*                             
+                            {this.props.currentUser.king ?
+                            <div>
+                                delete
+                                </div>
+                                : null
+                            } */}
+
+                            </div>
+                        )
+                    })}
+                </div>
             </div>
         )
     }
@@ -62,10 +113,12 @@ class Category extends Component {
 
 function mapStateToProps(state) {
     return {
-        posts: state.posts
+        posts: state.posts,
+        currentUser: state.currentUser
     }
 }
 
 export default connect(mapStateToProps, {
-    getCurrentUser: getCurrentUser
+    getCurrentUser: getCurrentUser,
+    emptyPosts: emptyPosts
 })(Category);
