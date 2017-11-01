@@ -47,9 +47,11 @@ passport.use(new Auth0Strategy({
     })
 }))
 
+const baseUrl = '165.227.30.134'
+
 app.get('/auth', passport.authenticate('auth0'));
 app.get('/auth/callback', passport.authenticate('auth0', {
-    successRedirect: 'http://localhost:3000/#/categories',
+    successRedirect: `${baseUrl}/#/categories`,
     failureRedirect: '/auth'
 }));
 app.get('/auth/me', (req, res) => {
@@ -61,7 +63,7 @@ app.get('/auth/me', (req, res) => {
 
 app.get('/auth/logout', (req, res) => {
     req.logOut();
-    res.redirect(302, 'http://localhost:3000/#/')
+    res.redirect(302, `${baseUrl}:3005/#/`)
 })
 
 

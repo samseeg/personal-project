@@ -51,7 +51,7 @@ class Profile extends Component {
                 </div>
                 </Link>
                 </div>
-                
+
                 <hr className='cat_sep'/>
 
                 </div>
@@ -110,6 +110,6 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, {
-    userPostsPull: userPostsPull,
-    emptyPosts: emptyPosts
+    userPostsPull,
+    emptyPosts
 })(Profile);
