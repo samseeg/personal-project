@@ -98,5 +98,5 @@ app.get('*', (req, res)=>{
   res.sendFile(path.join(__dirname, '../build/index.html'));
 })
 
-const PORT = 3005;
+const PORT = 80;
 app.listen(PORT, console.log(`Listening on port ${PORT}`))
